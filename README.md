@@ -1,18 +1,9 @@
-### Date created
+## Udacity Nanodegree for Data Science: Bikeshare
 
-12 July 2019
-
-
-
-### Udacity Nanodegree for Data Science: Bikeshare
-
-
-
+### Date created: 12 July 2019
 
 ### Description
 In order to fullfill the Nanodegree from Udacity one project was to work on Bikeshare data and anlysis it with python.
-
-
 
 ### Files used
 
@@ -25,4 +16,4 @@ In order to fullfill the Nanodegree from Udacity one project was to work on Bike
 - washngton.csv
 
 ### Credits
-To my mentor Ronak M. who reviewed my code with me and gave me good suggestions how to attempt certain problems.
+To my mentor **Ronak M.** who reviewed my code with me and gave me good suggestions how to attempt certain problems.
