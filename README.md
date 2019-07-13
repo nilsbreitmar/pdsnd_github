@@ -5,6 +5,15 @@
 ### Description
 In order to fullfill the Nanodegree from Udacity one project was to work on Bikeshare data and anlysis it with python.
 
+The programm lets you filter by one of three cities which are:
+- Chicago
+- New York
+- Washington
+
+You then have the choice of also filtering by a month (date range from January - June) or select all and to filter by a weekday. The input can be either the fully written word or a 3 letter acronym.
+
+At the end you can also display raw data if you want to do that.
+
 ### Files used
 
 - bikeshare.py

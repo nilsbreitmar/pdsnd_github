@@ -21,12 +21,12 @@ def get_filters():
     else:
         print("\nToo bad!\n")
         exit()
-            
-    while True: 
+
+    while True:
         city = input("Please enter city name ").lower()
         if city in ['chicago', 'washington', 'new york city', 'new york']:
             break
-        else: 
+        else:
             print("Please enter valid city ")
 
     months_short = {'jan':1, 'feb':2, 'mar':3, 'apr':4, 'may':5, 'jun':6}
@@ -34,14 +34,14 @@ def get_filters():
     while True:
         month = input("Which month are you interested in? ").lower()
         if month.lower()=='all':
-            break      
+            break
         elif month.lower() in months_short:
-            month = months_short.get(month.lower())  
+            month = months_short.get(month.lower())
             break
         elif month.lower() in months_long:
-            month = months_long.get(month.lower())   
+            month = months_long.get(month.lower())
             break
-        else: 
+        else:
             print("Please enter valid month ")
 
     days_short = {'mon':'monday', 'tue':'tuesday', 'wed':'wednesday', 'thu':'thursday', 'fri':'friday', 'sat':'saturday', 'sun':'sunday'}
@@ -49,20 +49,16 @@ def get_filters():
     while True:
         day = input("For which day? ").lower()
         if day.lower()=='all':
-            break        
+            break
         elif day.lower() in days_short:
-            day = days_short.get(day.lower()) 
+            day = days_short.get(day.lower())
             break
         elif day.lower() in days_long:
-            day = days_long.get(day.lower()) 
+            day = days_long.get(day.lower())
             break
         else:
             print("Please enter a valid day ")
 
-#seems to be redundant since the dictionary means the same as the input. How can I optimize?
-#According to mentor: no more efficient way; the use case itself is redundant
-#It would be awesome to have the ability choosing between two error messages. The first should display "you can enter the following values" and the second should then loop "Please enter a valid day"
-            
     print('-'*40)
     return city, month, day
 
@@ -77,18 +73,18 @@ def load_data(city, month, day):
     Returns:
         df - Pandas DataFrame containing city data filtered by month and day
     """
-    
+
     df = pd.read_csv(CITY_DATA.get(city))
- 
+
     df['Start Time'] = pd.to_datetime(df['Start Time'])
     df['End Time'] = pd.to_datetime(df['End Time'])
-    
+
     if month!='all':
         df = df[df['Start Time'].dt.month == month]
-    
+
     if day.lower()!='all':
         df = df[df['Start Time'].dt.weekday_name == day.title()]
-       
+
     return df
 
 def time_stats(df):
@@ -100,7 +96,7 @@ def time_stats(df):
     most_common_month = df['Start Time'].dt.month.mode()[0]
     months = {1:'January', 2:'February', 3:'March', 4:'April', 5:'May', 6:'June'}
     print("The most common month is",months.get(most_common_month))
-    
+
     most_common_day = df['Start Time'].dt.weekday_name.mode()[0]
     print("The most common day is",most_common_day)
 
@@ -122,7 +118,7 @@ def station_stats(df):
 
     most_common_end = df['End Station'].mode()[0]
     print("The most common end station is",most_common_end)
-    
+
     df['Popular Route']=df['Start Station']+" to "+df['End Station']
     most_common_combi = df['Popular Route'].mode()[0]
     print("The most common route taken is from",most_common_combi)
@@ -138,8 +134,8 @@ def trip_duration_stats(df):
     start_time = time.time()
 
     sum_trip = df['Trip Duration'].sum()
-    print("The total trip time for your selection was",(sum_trip/360),"hours!")   
-    
+    print("The total trip time for your selection was",(sum_trip/360),"hours!")
+
     mean_trip = df['Trip Duration'].mean()
     print("The average trip took around",(mean_trip/60),"minutes.")
 
@@ -155,9 +151,9 @@ def user_stats(df):
 
     count_user = df['User Type'].value_counts()
     print(count_user,"took the bike in your selection")
-    
-    if 'Gender' in df.columns: 
-        count_gender = df['Gender'].value_counts()  
+
+    if 'Gender' in df.columns:
+        count_gender = df['Gender'].value_counts()
         print(count_gender)
     else:
         print()
@@ -168,20 +164,19 @@ def user_stats(df):
         birth_max = int(df['Birth Year'].max())
         print("The youngest person was born in",birth_max)
         birth_mode = int(df['Birth Year'].mode()[0])
-        print("On average the people were born in",birth_mode)    
+        print("On average the people were born in",birth_mode)
     else:
         print("There is no data on age or gender for Washington, sorry!")
-    
+
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
-#I dont want to display the data type -> display_data() ???
 
 def raw_lines(df):
     """
     Prompts the user if they want to see 5 lines of raw data. Displays that
     data if the answer is 'yes'. Continues these prompts and displays until
     the user says 'no'.
-    
+
     source: in collobarotion with student from student hub
     """
     x = 0
@@ -204,7 +199,6 @@ def raw_lines(df):
                 break
             else:
                 print("Just click 'enter' or type 'exit'")
-#df.iloc() would be an alternative solution
 
 def main():
     while True:
@@ -220,7 +214,7 @@ def main():
         restart = input('\nIf you want to restart type "Yes" otherwise hit any key you want to.\n')
         if restart.lower() != 'yes':
             print('''
-                 ______     ________   ______     ________ _ 
+                 ______     ________   ______     ________ _
                 |  _ \ \   / /  ____| |  _ \ \   / /  ____| |
                 | |_) \ \_/ /| |__    | |_) \ \_/ /| |__  | |
                 |  _ < \   / |  __|   |  _ < \   / |  __| | |
