@@ -1,15 +1,28 @@
 ### Date created
-Include the date you created this project and README file.
 
-### Project Title
-Replace the Project Title
+12 July 2019
+
+
+
+### Udacity Nanodegree for Data Science: Bikeshare
+
+
+
 
 ### Description
-Describe what your project is about and what it does
+In order to fullfill the Nanodegree from Udacity one project was to work on Bikeshare data and anlysis it with python.
+
+
 
 ### Files used
-Include the files used
+
+- bikeshare.py
+
+- chicago.csv
+
+- new_york_city.csv
+
+- washngton.csv
 
 ### Credits
-It's important to give proper credit. Add links to any repo that inspired you or blogposts you consulted.
-
+To my mentor Ronak M. who reviewed my code with me and gave me good suggestions how to attempt certain problems.
